@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>꽃길 마을</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#16221c">
+<meta name="theme-color" content="#0b1124">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -102,9 +102,79 @@ button{touch-action:manipulation}
   .btns{margin-top:8px}.btns button{flex:1;min-height:44px}
   .zoom button{min-width:40px;min-height:40px}
 }
+
+/* ===== Night: 밤 등불 마을 ===== */
+.card.mine{border-color:var(--gold)!important;box-shadow:0 0 0 1px var(--gold) inset,0 0 22px rgba(255,200,97,.28),0 10px 30px rgba(0,0,0,.4)!important}
+.float{font-family:var(--display);paint-order:stroke;stroke:#0a0f1d;stroke-width:5px;stroke-linejoin:round;pointer-events:none;animation:floatUp 1.6s ease-out forwards;transform-box:fill-box;transform-origin:center}
+@keyframes floatUp{0%{opacity:0;transform:translateY(10px) scale(.7)}15%{opacity:1;transform:translateY(0) scale(1.12)}30%{transform:translateY(-6px) scale(1)}100%{opacity:0;transform:translateY(-46px)}}
+@media (prefers-reduced-motion:reduce){.float{animation:none;opacity:0}}
+.prow{cursor:pointer}.prow:hover td{background:rgba(255,255,255,.04)}
+.tog{display:inline-block;width:12px;color:var(--muted);transition:transform .15s}.prow.open .tog{transform:rotate(90deg);color:var(--gold)}
+.drow td{padding:0 0 10px!important;text-align:left!important}
+.det{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px}
+.det.empty{color:var(--muted)}
+.dg+.dg{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.dt{font-weight:700;color:var(--muted);font-size:12px;margin-bottom:4px}.dt span{color:var(--gold)}
+.det ul{list-style:none;margin:0;padding:0}.det li{display:flex;gap:8px;align-items:baseline;padding:2px 0}
+.det .ty{min-width:30px;color:var(--ink)}.det .wy{flex:1;color:var(--muted)}.det b{color:var(--ink);font-variant-numeric:tabular-nums}
+.hint{color:var(--muted);font-size:12.5px;margin:8px 0 0}
+.modal .card{max-height:calc(100dvh - 32px);overflow-y:auto}
+
+:root{
+  --table:#0a0f1d; --table-2:#121a30; --felt:#0e1a22; --panel:rgba(17,23,43,.86); --line:#2a3556;
+  --ink:#eef0fb; --muted:#9aa3c4; --gold:#ffc861; --gold-ink:#2a1c05;
+  color-scheme:dark;
+}
+body{background-color:#070b16;
+  background-image:
+   radial-gradient(1.2px 1.2px at 12% 18%,rgba(255,255,255,.8),transparent 60%),
+   radial-gradient(1px 1px at 72% 9%,rgba(255,255,255,.7),transparent 60%),
+   radial-gradient(1.4px 1.4px at 88% 31%,rgba(255,240,200,.8),transparent 60%),
+   radial-gradient(1px 1px at 35% 6%,rgba(255,255,255,.6),transparent 60%),
+   radial-gradient(1px 1px at 55% 22%,rgba(255,255,255,.5),transparent 60%),
+   radial-gradient(1.1px 1.1px at 6% 52%,rgba(255,255,255,.5),transparent 60%),
+   radial-gradient(1px 1px at 94% 66%,rgba(255,255,255,.5),transparent 60%),
+   radial-gradient(ellipse 90% 50% at 80% -5%,rgba(120,140,220,.28),transparent 70%),
+   linear-gradient(180deg,#151d3a 0%,#0b1124 45%,#070b16 100%);
+  background-attachment:fixed;color:var(--ink)}
+.brand h1{color:#ffd47a;text-shadow:0 0 14px rgba(255,190,90,.55),0 0 34px rgba(255,170,60,.25)}
+.brand span{color:#aab3d6}
+header button,.zoom button{background:rgba(22,30,56,.75);color:var(--ink);border:1px solid rgba(255,200,97,.35);box-shadow:0 4px 14px rgba(0,0,0,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.board{border:1px solid rgba(255,200,97,.22);border-radius:18px;background-color:#0c1820;
+  background-image:radial-gradient(ellipse 70% 60% at 50% 42%,rgba(60,110,120,.28),transparent 70%),
+   radial-gradient(rgba(255,255,255,.035) 1px,transparent 1.3px);background-size:auto,9px 9px;
+  box-shadow:inset 0 0 60px rgba(0,0,0,.7),0 0 0 1px rgba(0,0,0,.6),0 18px 40px rgba(0,0,0,.55),0 0 50px rgba(255,190,90,.07)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.4);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.pl{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.pl.active{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset,0 0 18px rgba(255,200,97,.3)}
+.pips{display:flex;align-items:flex-end;gap:2px;margin-top:3px;flex-wrap:wrap}
+.pip{width:6px;height:9px;border-radius:3px 3px 1.5px 1.5px;background:var(--c);box-shadow:0 0 5px var(--c);flex:none}
+.pip.off{background:transparent;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.pip.pr{width:8px;height:12px;border-radius:50% 50% 2px 2px;margin-left:4px}
+.dot{box-shadow:0 0 8px currentColor}
+.status b{color:var(--gold);text-shadow:0 0 10px rgba(255,200,97,.4)}
+.card button{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid rgba(255,255,255,.14)}
+.card button.primary{background:linear-gradient(#ffd47a,#f0a83a);color:#2a1a04;border-color:#ffd47a;box-shadow:0 0 16px rgba(255,190,90,.35)}
+.card button:active,header button:active,.zoom button:active{transform:translateY(1px)}
+.turn svg{border-radius:7px;box-shadow:0 3px 0 #241f33,0 0 22px rgba(255,200,97,.22)}
+.ff{animation:ff 2.6s ease-in-out infinite alternate}
+@keyframes ff{from{opacity:.15}to{opacity:1}}
+@keyframes drop{from{transform:translateY(-14px) scale(1.08);opacity:0}to{transform:none;opacity:1}}
+.newtile{animation:drop .28s cubic-bezier(.2,.9,.3,1.2) both;transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:reduce){.newtile,.ff{animation:none}}
+@media (max-width:820px){.app{gap:12px}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<radialGradient id="gGround" cx="30%" cy="25%" r="85%"><stop offset="0" stop-color="#3f7a6c"/><stop offset="1" stop-color="#1f4440"/></radialGradient>
+<radialGradient id="gLamp"><stop offset="0" stop-color="#ffdc85" stop-opacity=".95"/><stop offset=".4" stop-color="#ffb347" stop-opacity=".35"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+<radialGradient id="gBeam"><stop offset="0" stop-color="#fff0b0" stop-opacity=".85"/><stop offset=".35" stop-color="#ffc861" stop-opacity=".3"/><stop offset="1" stop-color="#ffc861" stop-opacity="0"/></radialGradient>
+<radialGradient id="gFF"><stop offset="0" stop-color="#f4ff9a" stop-opacity=".9"/><stop offset="1" stop-color="#c8ff6a" stop-opacity="0"/></radialGradient>
+<radialGradient id="gBloom"><stop offset="0" stop-color="#9af6ff" stop-opacity=".35"/><stop offset="1" stop-color="#c39bff" stop-opacity="0"/></radialGradient>
+<linearGradient id="gStone" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5d5488"/><stop offset="1" stop-color="#383156"/></linearGradient>
+<linearGradient id="gRoof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b04a62"/><stop offset="1" stop-color="#6e2a40"/></linearGradient>
+</defs></svg>
 
 <div class="wrap">
   <header>
@@ -164,7 +234,7 @@ button{touch-action:manipulation}
 
 <script>
 // ===== LOGIC START =====
-const P_COLORS=['#e2483d','#9b6bf0','#f0b429','#262626'];
+const P_COLORS=['#e2483d','#9b6bf0','#f0b429','#dfe3ee'];
 const P_NAMES=['나','참새','두더지','여우'];
 const TYPE_KO={road:'길',castle:'성',temple:'사원',flower:'꽃밭',river:'강',field:'들판'};
 const DIRS=[[0,-1],[1,0],[0,1],[-1,0]];
@@ -323,6 +393,7 @@ function award(st,flags,pts,type,events,tiles,late){
   w.forEach(p=>{st.scores[p]+=pts;st.breakdown[p][type]+=pts;});
   flags.forEach(fl=>{const f=st.board.get(fl.k).f[fl.i];if(f.pr){st.priest[fl.p]=true;f.pr=false;}else st.flags[fl.p]++;f.flag=null;});
   events.push({type,pts,winners:w,tiles,late:late||false});
+  if(st.hist&&pts)w.forEach(p=>st.hist[p].push({type,pts,n:(tiles||[]).length,shared:w.length>1,late:late||false}));
 }
 function finishPlacement(st,x,y,ch,p,events){
   const k=key(x,y),t=st.board.get(k);
@@ -419,7 +490,7 @@ function newState(){
   const deck=buildDeck();
   const st={board:new Map(),deck,deckTotal:deck.length,scores:[0,0,0,0],flags:[7,7,7,7],priest:[true,true,true,true],
     breakdown:[0,1,2,3].map(()=>({road:0,castle:0,temple:0,flower:0,field:0})),
-    turn:0,phase:'idle',current:null,currentId:0,sel:null,pending:null,last:null,log:[],over:false,flash:[]};
+    turn:0,phase:'idle',current:null,currentId:0,sel:null,pending:null,last:null,log:[],over:false,flash:[],hist:[[],[],[],[]]};
   placeTile(st,START,{x:0,y:0,rot:0});
   return st;
 }
@@ -435,9 +506,9 @@ function drawTile(st,onDiscard){
 // ===== LOGIC END =====
 
 // ===== 그림 =====
-const C={grass:'#94b96b',grassDk:'#6c964a',road:'#ece0bd',roadEdge:'#9c8a62',river:'#64b2df',riverEdge:'#3b7fae',riverHi:'#bfe3f5',
-  castle:'#d4b27b',castleWall:'#6e5230',castleIn:'#ead2a2',roof:'#b24a35',temple:'#f4eee1',line:'#5e4e3c',court:'#dcd2b8',
-  patch:'#b5d286',petal:['#f48fb6','#ffd75e','#ffffff','#c99af0'],seam:'#5a7f40'};
+const C={grass:'#2f5a55',grassDk:'#4a7a6a',road:'#7d7598',roadEdge:'#1f1b2c',river:'#1f4a80',riverEdge:'#0b1a33',riverHi:'#bcd8ff',
+  castle:'#3a3352',castleWall:'#14101e',castleIn:'#ffc861',roof:'#9c4257',temple:'#c8c1de',line:'#14101e',court:'#22304a',
+  patch:'#1f3f3c',petal:['#7ef3ff','#ff8fd8','#c8a2ff','#fff3a8'],seam:'#081014',win:'#ffd36b'};
 const P=p=>p[0].toFixed(1)+' '+p[1].toFixed(1);
 function rng(seed){let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};}
 function flowerSpot(e){
@@ -490,51 +561,57 @@ function linePath(f){
   if(f.edges.length===2){const [a,b]=f.edges;return `M${P(MID[a])}Q50 50 ${P(MID[b])}`;}
   return f.edges.map(d=>`M${P(MID[d])}L50 50`).join('');
 }
+function lamp(x,y){return `<circle cx="${x}" cy="${y-6}" r="19" fill="url(#gLamp)"/><line x1="${x}" y1="${y+3}" x2="${x}" y2="${y-5}" stroke="#120e1a" stroke-width="1.6"/><rect x="${x-2.2}" y="${y-9}" width="4.4" height="4.8" rx="1" fill="#ffe08a" stroke="#120e1a" stroke-width=".8"/>`;}
+function house(x,y,k){k=k||1;const w=7*k,h=6*k;return `<circle cx="${x}" cy="${y}" r="${17*k}" fill="url(#gLamp)"/><ellipse cx="${x}" cy="${y+h+.5}" rx="${w+1}" ry="${1.6*k}" fill="rgba(0,0,0,.45)"/><rect x="${x-w}" y="${y-h*.2}" width="${w*2}" height="${h*1.2}" fill="#3d3456" stroke="#120e1a" stroke-width="1.2"/><path d="M${x-w-2.5} ${y}L${x} ${y-h*1.5}L${x+w+2.5} ${y}Z" fill="url(#gRoof)" stroke="#120e1a" stroke-width="1.2" stroke-linejoin="round"/><rect x="${x-w*.62}" y="${y+h*.15}" width="${w*.5}" height="${h*.48}" fill="${C.win}"/><rect x="${x+w*.12}" y="${y+h*.15}" width="${w*.5}" height="${h*.48}" fill="${C.win}"/>`;}
 function tileArt(t){
-  const e=t.e,r=rng(t.id*2654435761);let s=`<rect width="100" height="100" fill="${C.grass}"/>`;
-  for(let i=0;i<9;i++){const x=6+r()*88,y=9+r()*86;s+=`<path d="M${x.toFixed(1)} ${y.toFixed(1)}l1.5 -4.5M${(x+3).toFixed(1)} ${y.toFixed(1)}l-1 -4" stroke="${C.grassDk}" stroke-width="1.3" stroke-linecap="round" fill="none" opacity=".75"/>`;}
+  const e=t.e,r=rng(t.id*2654435761);let s=`<rect width="100" height="100" fill="url(#gGround)"/>`;
+  for(let i=0;i<10;i++){const x=6+r()*88,y=9+r()*86;s+=`<path d="M${x.toFixed(1)} ${y.toFixed(1)}l1.4 -4M${(x+2.8).toFixed(1)} ${y.toFixed(1)}l-.9 -3.6" stroke="#6aa58c" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".6"/>`;}
+  for(let i=0;i<2;i++){const x=10+r()*80,y=10+r()*80;s+=`<g class="ff" style="animation-delay:-${(r()*2.6).toFixed(2)}s"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.5" fill="url(#gFF)"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r=".9" fill="#f8ffc0"/></g>`;}
   if(t.c==='F'){
     const [fx,fy]=flowerSpot(e);
-    s+=`<ellipse cx="${fx}" cy="${fy}" rx="17" ry="14" fill="${C.patch}"/>`;
-    for(let i=0;i<9;i++){const a=r()*Math.PI*2,d=r()*11,x=fx+Math.cos(a)*d*1.15,y=fy+Math.sin(a)*d*.9,col=C.petal[i%4];
-      s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.3" fill="${col}" stroke="rgba(0,0,0,.18)" stroke-width=".6"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.2" fill="${col==='#ffd75e'?'#e07b22':'#f3b312'}"/>`;}
+    s+=`<circle cx="${fx}" cy="${fy}" r="24" fill="url(#gBloom)"/><ellipse cx="${fx}" cy="${fy}" rx="16" ry="13" fill="${C.patch}" opacity=".85"/>`;
+    for(let i=0;i<10;i++){const a=r()*Math.PI*2,d=r()*11,x=fx+Math.cos(a)*d*1.15,y=fy+Math.sin(a)*d*.9,col=C.petal[i%4];
+      s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.6" fill="${col}" opacity=".22"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.4" fill="${col}"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r=".9" fill="#fff"/>`;}
   }
   const rivers=t.f.filter(f=>f.type==='river'),roads=t.f.filter(f=>f.type==='road');
   for(const f of rivers){
     const d=linePath(f);
-    s+=`<path d="${d}" stroke="${C.riverEdge}" stroke-width="21" fill="none"/><path d="${d}" stroke="${C.river}" stroke-width="16" fill="none"/><path d="${d}" stroke="${C.riverHi}" stroke-width="2" stroke-dasharray="5 9" fill="none" opacity=".85"/>`;
-    if(f.edges.length===1) s+=`<circle cx="50" cy="50" r="16" fill="${C.river}" stroke="${C.riverEdge}" stroke-width="2.5"/><path d="M42 48q4-3 8 0t8 0" stroke="${C.riverHi}" stroke-width="1.8" fill="none"/>`;
+    s+=`<path d="${d}" stroke="${C.riverEdge}" stroke-width="22" fill="none"/><path d="${d}" stroke="${C.river}" stroke-width="16" fill="none"/><path d="${d}" stroke="#2f69ad" stroke-width="7" fill="none" opacity=".7"/><path d="${d}" stroke="${C.riverHi}" stroke-width="1.6" stroke-dasharray="3 11" fill="none" opacity=".9"/>`;
+    if(f.edges.length===1) s+=`<circle cx="50" cy="50" r="16" fill="${C.river}" stroke="${C.riverEdge}" stroke-width="3"/><ellipse cx="45" cy="45" rx="5" ry="2.4" fill="${C.riverHi}" opacity=".6"/><path d="M48 54q4-2.5 8 0" stroke="${C.riverHi}" stroke-width="1.3" fill="none" opacity=".7"/>`;
   }
-  for(const f of roads){const d=linePath(f);s+=`<path d="${d}" stroke="${C.roadEdge}" stroke-width="13" fill="none"/><path d="${d}" stroke="${C.road}" stroke-width="9" fill="none"/>`;}
+  for(const f of roads){const d=linePath(f);s+=`<path d="${d}" stroke="${C.roadEdge}" stroke-width="14" fill="none"/><path d="${d}" stroke="${C.road}" stroke-width="10" fill="none"/><path d="${d}" stroke="#8f88a8" stroke-width="7" stroke-dasharray="2.6 3.4" fill="none" opacity=".55"/>`;}
   if(rivers.length&&roads.length){
     const h=roads[0].edges.includes(1);
-    s+=h?`<path d="M35 42.5H65M35 57.5H65" stroke="${C.castleWall}" stroke-width="2.6" stroke-linecap="round"/>`:`<path d="M42.5 35V65M57.5 35V65" stroke="${C.castleWall}" stroke-width="2.6" stroke-linecap="round"/>`;
+    s+=h?`<path d="M35 42.5H65M35 57.5H65" stroke="#7a5638" stroke-width="2.6" stroke-linecap="round"/>`:`<path d="M42.5 35V65M57.5 35V65" stroke="#7a5638" stroke-width="2.6" stroke-linecap="round"/>`;
   }
+  // 길마다 등불 하나(길 옆)
+  for(const f of roads){const d0=f.edges[0],m=MID[d0],q=[m[0]+(50-m[0])*.42,m[1]+(50-m[1])*.42],dx=DIRS[d0][1],dy=-DIRS[d0][0];s+=lamp(q[0]+dx*10,q[1]+dy*10+3);}
   const castle=t.f.find(f=>f.type==='castle');
   const nR=e.filter(x=>x==='R').length;
-  if(nR&&nR!==2&&t.c!=='T'&&!(castle&&castle.edges.length>=3))
-    s+=`<rect x="43" y="47" width="14" height="11" fill="#f1e6cf" stroke="${C.line}" stroke-width="1.5"/><path d="M40.5 48L50 39.5L59.5 48Z" fill="${C.roof}" stroke="${C.line}" stroke-width="1.5" stroke-linejoin="round"/>`;
+  if(nR&&nR!==2&&t.c!=='T'&&!(castle&&castle.edges.length>=3)) s+=house(50,49,1);
   if(castle){
     const d=castlePath(castle.edges),[ax,ay]=anchorsOf(t)[t.f.indexOf(castle)];
-    s+=`<path d="${d}" fill="${C.castle}" stroke="${C.castleWall}" stroke-width="3.5" stroke-linejoin="round"/>`;
-    s+=`<path d="${d}" fill="none" stroke="${C.castleIn}" stroke-width="1.2" stroke-dasharray="3 5" transform="translate(50 50) scale(.86) translate(-50 -50)"/>`;
-    s+=`<rect x="${ax-5}" y="${ay-3}" width="10" height="12" fill="${C.castleIn}" stroke="${C.castleWall}" stroke-width="1.4"/><path d="M${ax-7.5} ${ay-3}L${ax} ${ay-13}L${ax+7.5} ${ay-3}Z" fill="${C.roof}" stroke="${C.castleWall}" stroke-width="1.4" stroke-linejoin="round"/>`;
+    s+=`<path d="${d}" fill="url(#gStone)" stroke="${C.castleWall}" stroke-width="4" stroke-linejoin="round"/>`;
+    s+=`<path d="${d}" fill="none" stroke="#6a5f8e" stroke-width="1.3" stroke-dasharray="4 3" transform="translate(50 50) scale(.86) translate(-50 -50)"/>`;
+    if(castle.edges.length>=3){s+=house(ax-13,ay+9,.8)+house(ax+13,ay+9,.8);}
+    s+=`<circle cx="${ax}" cy="${ay}" r="30" fill="url(#gLamp)" opacity=".55"/>`;
+    s+=house(ax,ay-1,1.15);
   }
   if(t.c==='T'){
-    s+=`<circle cx="50" cy="51" r="21" fill="${C.court}" stroke="#b5a988" stroke-width="1.5"/>`;
-    s+=`<rect x="37" y="47" width="26" height="16" fill="${C.temple}" stroke="${C.line}" stroke-width="1.6"/><path d="M33 48L50 34L67 48Z" fill="${C.roof}" stroke="${C.line}" stroke-width="1.6" stroke-linejoin="round"/><path d="M47 63V55h6v8" fill="#7a5a3c"/><circle cx="50" cy="42.5" r="2" fill="${C.temple}"/>`;
+    s+=`<circle cx="50" cy="52" r="20" fill="${C.court}" stroke="#3a4a6a" stroke-width="1.5"/><circle cx="50" cy="36" r="40" fill="url(#gBeam)"/>`;
+    s+=`<ellipse cx="50" cy="66" rx="12" ry="3" fill="rgba(0,0,0,.45)"/><path d="M42 66L45 40H55L58 66Z" fill="${C.temple}" stroke="${C.line}" stroke-width="1.5" stroke-linejoin="round"/><path d="M43.5 55H56.5M44.5 47H55.5" stroke="#8a82a8" stroke-width="1.2"/><rect x="44" y="33" width="12" height="8" rx="1.5" fill="#fff0b0" stroke="${C.line}" stroke-width="1.4"/><path d="M42 33L50 25L58 33Z" fill="url(#gRoof)" stroke="${C.line}" stroke-width="1.4" stroke-linejoin="round"/><path d="M47.5 66V60h5v6" fill="#2a2238"/>`;
   }
-  s+=`<rect x=".5" y=".5" width="99" height="99" fill="none" stroke="${C.seam}" stroke-width="1" opacity=".5"/>`;
+  s+=`<rect x=".5" y=".5" width="99" height="99" fill="none" stroke="${C.seam}" stroke-width="1" opacity=".6"/>`;
   return s;
 }
 function priestArt(x,y,col){
-  return `<g pointer-events="none"><ellipse cx="${x}" cy="${y+12}" rx="9" ry="3" fill="rgba(0,0,0,.35)"/><path d="M${x-9} ${y+12}Q${x} ${y-12} ${x+9} ${y+12}Z" fill="${col}" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><circle cx="${x}" cy="${y-6}" r="5.5" fill="#f3dcc0" stroke="#fff" stroke-width="1.6"/><path d="M${x-6.5} ${y-8}Q${x} ${y-15} ${x+6.5} ${y-8}" fill="${col}" stroke="#fff" stroke-width="1.4"/><line x1="${x+11}" y1="${y+12}" x2="${x+11}" y2="${y-10}" stroke="#7a5a3c" stroke-width="2.2" stroke-linecap="round"/><circle cx="${x+11}" cy="${y-11}" r="2.6" fill="#f2c14e"/></g>`;
+  return `<g pointer-events="none" transform="translate(${x} ${y}) scale(1.3) translate(${-x} ${-y})"><ellipse cx="${x}" cy="${y+12}" rx="9" ry="3" fill="rgba(0,0,0,.35)"/><path d="M${x-9} ${y+12}Q${x} ${y-12} ${x+9} ${y+12}Z" fill="${col}" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><circle cx="${x}" cy="${y-6}" r="5.5" fill="#f3dcc0" stroke="#fff" stroke-width="1.6"/><path d="M${x-6.5} ${y-8}Q${x} ${y-15} ${x+6.5} ${y-8}" fill="${col}" stroke="#fff" stroke-width="1.4"/><line x1="${x+11}" y1="${y+12}" x2="${x+11}" y2="${y-10}" stroke="#7a5a3c" stroke-width="2.2" stroke-linecap="round"/><circle cx="${x+11}" cy="${y-11}" r="2.6" fill="#f2c14e"/></g>`;
 }
 function lieArt(x,y,col){
-  return `<g pointer-events="none"><ellipse cx="${x}" cy="${y+5}" rx="16" ry="3.2" fill="rgba(0,0,0,.32)"/><line x1="${x-15}" y1="${y+2}" x2="${x+12}" y2="${y+2}" stroke="#2b2118" stroke-width="2.6" stroke-linecap="round"/><path d="M${x+12} ${y+2}L${x+5} ${y-12}L${x-2} ${y+2}Z" fill="${col}" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></g>`;
+  return `<g pointer-events="none" transform="translate(${x} ${y}) scale(1.3) translate(${-x} ${-y})"><ellipse cx="${x}" cy="${y+5}" rx="16" ry="3.2" fill="rgba(0,0,0,.32)"/><line x1="${x-15}" y1="${y+2}" x2="${x+12}" y2="${y+2}" stroke="#2b2118" stroke-width="2.6" stroke-linecap="round"/><path d="M${x+12} ${y+2}L${x+5} ${y-12}L${x-2} ${y+2}Z" fill="${col}" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></g>`;
 }
 function flagArt(x,y,col){
-  return `<g pointer-events="none"><ellipse cx="${x}" cy="${y+11}" rx="6" ry="2.5" fill="rgba(0,0,0,.35)"/><line x1="${x}" y1="${y+11}" x2="${x}" y2="${y-14}" stroke="#2b2118" stroke-width="2.6" stroke-linecap="round"/><path d="M${x} ${y-14}L${x+17} ${y-7.5}L${x} ${y-1}Z" fill="${col}" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></g>`;
+  return `<g pointer-events="none" transform="translate(${x} ${y}) scale(1.3) translate(${-x} ${-y})"><ellipse cx="${x}" cy="${y+11}" rx="6" ry="2.5" fill="rgba(0,0,0,.35)"/><line x1="${x}" y1="${y+11}" x2="${x}" y2="${y-14}" stroke="#2b2118" stroke-width="2.6" stroke-linecap="round"/><path d="M${x} ${y-14}L${x+17} ${y-7.5}L${x} ${y-1}Z" fill="${col}" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></g>`;
 }
 
 // ===== 화면 =====
@@ -544,14 +621,21 @@ const svg=$('svg');
 let view={x:-350,y:-250,w:700,h:500},autoFit=true;
 
 function addLog(text,p){S.log.unshift({text,p});if(S.log.length>40)S.log.pop();}
+function why(ev){const n=ev.n!=null?ev.n:(ev.tiles||[]).length;
+  if(ev.type==='field')return `완성 성 ${ev.pts/3}개`;
+  if(ev.type==='temple'||ev.type==='flower'||ev.late==='recall')return `주변 ${n}칸`;
+  return `타일 ${n}장`;}
 function logEvents(events,p){
   for(const ev of events){
     if(ev.flag){addLog(`${P_NAMES[ev.p]} → ${TYPE_KO[ev.type]}에 ${ev.priest?'사제':'깃발'}`,ev.p);continue;}
     if(!ev.winners.length||!ev.pts)continue;
     const who=ev.winners.map(w=>P_NAMES[w]).join('·');
-    addLog(`${who} ${TYPE_KO[ev.type]} ${ev.late==='recall'?'사제 회수':ev.late?'정산':'완성'} +${ev.pts}${ev.winners.length>1?' (각)':''}`,ev.winners[0]);
+    addLog(`${who} ${TYPE_KO[ev.type]} ${ev.late==='recall'?'사제 회수':ev.late?'정산':'완성'} +${ev.pts}${ev.winners.length>1?' (각)':''} · ${why(ev)}`,ev.winners[0]);
     S.flash.push({tiles:ev.tiles});
+    if(ev.tiles&&ev.tiles.length){let cx=0,cy=0;ev.tiles.forEach(k=>{const [x,y]=k.split(',').map(Number);cx+=x;cy+=y;});cx=cx/ev.tiles.length*100+50;cy=cy/ev.tiles.length*100+50;
+      (S.floats=S.floats||[]).push({x:cx,y:cy,pts:ev.pts,ws:ev.winners.slice(),t0:Date.now()});}
   }
+  if(S.floats&&S.floats.length){const fl=S.floats.slice();setTimeout(()=>{S.floats=(S.floats||[]).filter(x=>!fl.includes(x));renderBoard();},1700);}
   if(S.flash.length){const f=S.flash;setTimeout(()=>{S.flash=S.flash.filter(x=>!f.includes(x));renderBoard();},1500);}
 }
 function bounds(){
@@ -596,17 +680,26 @@ function fieldOverlay(){
 }
 function renderBoard(){
   if(autoFit)fitView();applyView();
-  let s='';
-  for(const t of S.board.values()){
+  let s='',s2f='';
+  let s2='';const tl=[...S.board.values()].sort((a,b)=>a.y-b.y||a.x-b.x);
+  const lk=S.last?key(S.last.x,S.last.y):null;
+  s+=`<defs><clipPath id="tc"><rect width="100" height="100" rx="6"/></clipPath></defs>`;
+  for(const t of tl){
     if(!t.art)t.art=tileArt(t);
-    s+=`<g transform="translate(${t.x*100} ${t.y*100})">${t.art}`;
-    const an=anchorsOf(t);t.f.forEach((f,i)=>{if(f.flag!=null)s+=(f.pr?priestArt:f.type==='field'?lieArt:flagArt)(an[i][0],an[i][1],P_COLORS[f.flag]);});
-    s+=`</g>`;
+    const isNew=lk===key(t.x,t.y)&&S.lastAnim!==lk;
+    s+=`<g transform="translate(${t.x*100} ${t.y*100})"><g${isNew?' class="newtile"':''}><rect x="3.5" y="8" width="95" height="94" rx="7" fill="rgba(0,0,0,.55)"/><rect x="2" y="5" width="96" height="95" rx="6" fill="#2a2438"/><rect x="2" y="5" width="96" height="2" fill="#463d5e"/><g transform="translate(2 1.5) scale(.96)"><g clip-path="url(#tc)">${t.art}<rect x=".8" y=".8" width="98.4" height="98.4" rx="5.5" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.4"/></g></g></g></g>`;
+    const an=anchorsOf(t);let fl='';t.f.forEach((f,i)=>{if(f.flag!=null)fl+=(f.pr?priestArt:f.type==='field'?lieArt:flagArt)(an[i][0],an[i][1],P_COLORS[f.flag]);});
+    if(fl)s2+=`<g transform="translate(${t.x*100+2} ${t.y*100+1.5}) scale(.96)">${fl}</g>`;
   }
+  if(lk)S.lastAnim=lk;
+  s+=s2;
   if(S.over&&S.fieldView&&S.fieldRes)s+=fieldOverlay();
   if(S.last&&!S.over&&!(isHuman()&&S.phase==='flag')){
     s+=`<rect x="${S.last.x*100+2}" y="${S.last.y*100+2}" width="96" height="96" rx="3" fill="none" stroke="${P_COLORS[S.last.p]}" stroke-width="5" pointer-events="none"/>`;
   }
+  if(S.floats&&S.floats.length){const z=Math.max(1,view.w/(svg.clientWidth||600)*1.4),now=Date.now();
+    for(const f of S.floats)f.ws.forEach((w,wi)=>{const dx=(wi-(f.ws.length-1)/2)*44*z;
+      s2f+=`<text class="float" style="animation-delay:-${Math.min(1600,now-f.t0)}ms" x="${f.x+dx}" y="${f.y}" text-anchor="middle" font-size="${(26*z).toFixed(1)}" fill="${P_COLORS[w]}">+${f.pts}</text>`;});}
   for(const fl of S.flash)for(const k of fl.tiles){const [x,y]=k.split(',').map(Number);s+=`<rect class="flash" x="${x*100}" y="${y*100}" width="100" height="100"/>`;}
   if(isHuman()&&S.phase==='place'&&S.current){
     const cells=new Set(validPlacements(S.board,S.current).map(o=>key(o.x,o.y)));
@@ -632,12 +725,13 @@ function renderBoard(){
       s+=`<circle class="spot${o.kind==='priest'?' pr':fd?' fd':''}" data-oi="${oi}" cx="${t.x*100+an[o.i][0]+dx}" cy="${t.y*100+an[o.i][1]}" r="${spotR}"/>`;
     });
   }
-  svg.innerHTML=s;
+  svg.innerHTML=s+s2f;
 }
 function renderPanel(){
-  $('players').innerHTML=[0,1,2,3].map(p=>`<div class="pl${S.turn===p&&!S.over?' active':''}"><div class="nm"><span class="dot" style="background:${P_COLORS[p]}"></span>${P_NAMES[p]}${p?' <span style="color:var(--muted);font-size:12px">AI</span>':''}</div><div class="sc">${S.scores[p]}</div><div class="fl">깃발 ${S.flags[p]}/7 · 사제 ${S.priest[p]?'대기':'출동'}</div></div>`).join('');
+  $('players').innerHTML=[0,1,2,3].map(p=>`<div class="pl${S.turn===p&&!S.over?' active':''}"><div class="nm"><span class="dot" style="background:${P_COLORS[p]}"></span>${P_NAMES[p]}${p?' <span style="color:var(--muted);font-size:12px">AI</span>':''}</div><div class="sc">${S.scores[p]}</div><div class="pips" title="깃발 ${S.flags[p]}/7 · 사제 ${S.priest[p]?'대기':'출동'}" aria-label="깃발 ${S.flags[p]}개 남음, 사제 ${S.priest[p]?'대기':'출동'}">${[0,1,2,3,4,5,6].map(i=>`<i class="pip${i<S.flags[p]?'':' off'}" style="--c:${P_COLORS[p]}"></i>`).join('')}<i class="pip pr${S.priest[p]?'':' off'}" style="--c:${P_COLORS[p]}"></i></div></div>`).join('');
   const pv=S.current?makeTile(S.current,S.sel?S.sel.rots[S.sel.ri]:0,S.currentId):null;
   $('preview').innerHTML=pv?tileArt(pv):'';
+  {const c=$('preview').closest('.card');if(c)c.classList.toggle('mine',isHuman()&&!S.over&&(S.phase==='place'||S.phase==='flag'));}
   let st='';
   if(S.over) st=S.fieldView?'<b>게임 끝 · 들판 범위</b>색칠=누운 들판(이긴 사람 색). 진하게 칠한 곳이 내가 누운 들판이고, 말풍선은 닿은 완성 성 수와 점수예요.':'<b>게임 끝</b>최종 점수를 확인하세요.';
   else if(!isHuman()) st=`<b>${P_NAMES[S.turn]} 차례</b>타일을 고르는 중…`;
@@ -725,13 +819,22 @@ function endGame(){
   const win=order[0];
   $('modal').innerHTML=`<div class="card"><h2>${win===0?'우승했어요':P_NAMES[win]+' 우승'}</h2>
     <div class="tbl"><table><thead><tr><th>이름</th><th>길</th><th>성</th><th>사원</th><th>꽃밭</th><th>들판</th><th>합계</th></tr></thead><tbody>
-    ${order.map(p=>{const b=S.breakdown[p];return `<tr><td><span class="dot" style="display:inline-block;vertical-align:-1px;margin-right:6px;background:${P_COLORS[p]}"></span>${P_NAMES[p]}</td><td>${b.road}</td><td>${b.castle}</td><td>${b.temple}</td><td>${b.flower}</td><td>${b.field||0}</td><td class="tot">${S.scores[p]}</td></tr>`;}).join('')}
+    ${order.map(p=>{const b=S.breakdown[p];return `<tr class="prow" data-p="${p}"><td><span class="tog">▸</span><span class="dot" style="display:inline-block;vertical-align:-1px;margin-right:6px;background:${P_COLORS[p]}"></span>${P_NAMES[p]}</td><td>${b.road}</td><td>${b.castle}</td><td>${b.temple}</td><td>${b.flower}</td><td>${b.field||0}</td><td class="tot">${S.scores[p]}</td></tr><tr class="drow" data-p="${p}" hidden><td colspan="7">${detailHTML(p)}</td></tr>`;}).join('')}
     </tbody></table></div>
+    <p class="hint">이름을 누르면 어디서 몇 점 났는지 펼쳐져요.</p>
     ${myFieldLine()}
     <div class="btns" style="justify-content:flex-end"><button type="button" id="mClose">${S.fieldRes.length?'들판 범위 보기':'판 보기'}</button><button type="button" class="primary" id="mAgain">다시 하기</button></div></div>`;
   $('modal').hidden=false;
+  $('modal').querySelectorAll('.prow').forEach(tr=>tr.onclick=()=>{const d=$('modal').querySelector(`.drow[data-p="${tr.dataset.p}"]`);d.hidden=!d.hidden;tr.classList.toggle('open',!d.hidden);});
   $('mClose').onclick=()=>{$('modal').hidden=true;};
   $('mAgain').onclick=()=>{$('modal').hidden=true;newGame();};
+}
+function detailHTML(p){
+  const h=(S.hist&&S.hist[p])||[];
+  if(!h.length)return '<div class="det empty">점수 난 곳이 없어요.</div>';
+  const row=e=>`<li><span class="ty">${TYPE_KO[e.type]}</span><span class="wy">${e.late==='recall'?'사제 회수 · ':''}${why(e)}${e.shared?' · 공동':''}</span><b>+${e.pts}</b></li>`;
+  const grp=(t,a)=>a.length?`<div class="dg"><div class="dt">${t} <span>${a.reduce((x,e)=>x+e.pts,0)}점</span></div><ul>${a.map(row).join('')}</ul></div>`:'';
+  return `<div class="det">${grp('경기 중 완성',h.filter(e=>e.late!==true))}${grp('게임 끝 정산',h.filter(e=>e.late===true))}</div>`;
 }
 function myFieldLine(){
   const mine=S.fieldRes.filter(r=>r.flags.some(f=>f.p===0));
@@ -806,12 +909,12 @@ new ResizeObserver(()=>{if(!S)return;if(autoFit)fitView();else{const r=svg.getBo
 function serialize(){
   return {board:[...S.board.values()].map(t=>({e:t.e.join(''),c:t.c,id:t.id,x:t.x,y:t.y,fl:t.f.map(f=>f.flag),pr:t.f.map(f=>!!f.pr)})),priest:S.priest,
     deck:S.deck,deckTotal:S.deckTotal,scores:S.scores,flags:S.flags,breakdown:S.breakdown,turn:S.turn,current:S.current,currentId:S.currentId,
-    last:S.last,log:S.log,over:S.over,fieldRes:S.fieldRes||null,fieldView:!!S.fieldView,phase:S.phase,pending:S.pending,nextId};
+    last:S.last,log:S.log,hist:S.hist,over:S.over,fieldRes:S.fieldRes||null,fieldView:!!S.fieldView,phase:S.phase,pending:S.pending,nextId};
 }
 function restore(d){
   const st=newState();st.board=new Map();
   for(const b of d.board){const t=makeTile({e:b.e,c:b.c},0,b.id);t.x=b.x;t.y=b.y;b.fl.forEach((f,i)=>{if(t.f[i]){t.f[i].flag=f;t.f[i].pr=!!(b.pr&&b.pr[i]);}});st.board.set(key(t.x,t.y),t);}
-  Object.assign(st,{priest:d.priest||[true,true,true,true],deck:d.deck,deckTotal:d.deckTotal,scores:d.scores,flags:d.flags,breakdown:d.breakdown,turn:d.turn,current:d.current,currentId:d.currentId,last:d.last,log:d.log,over:d.over,phase:d.phase,pending:d.pending,fieldRes:d.fieldRes||null,fieldView:!!d.fieldView});
+  Object.assign(st,{priest:d.priest||[true,true,true,true],deck:d.deck,deckTotal:d.deckTotal,scores:d.scores,flags:d.flags,breakdown:d.breakdown,turn:d.turn,current:d.current,currentId:d.currentId,last:d.last,log:d.log,hist:d.hist||[[],[],[],[]],over:d.over,phase:d.phase,pending:d.pending,fieldRes:d.fieldRes||null,fieldView:!!d.fieldView});
   nextId=Math.max(nextId,d.nextId||1);S=st;
   if(S.over){render();return;}
   if(S.turn===0&&S.phase==='flag'&&S.pending){render();return;}
